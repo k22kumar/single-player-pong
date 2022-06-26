@@ -1,3 +1,5 @@
+const { SocketAddress } = require('net');
+
 const server = require('http').createServer();
 const io = require('socket.io')(server, {
     cors: {
@@ -24,5 +26,14 @@ io.on('connection', (socket) => {
         if (readyPlayerCount ===2) {
             io.emit('startGame', socket.id);
         }
+    });
+
+    socket.on('paddleMove', (paddleData) => {
+        // sends data to all but the original sender
+        socket.broadcast.emit('paddleMove', paddleData);
+    });
+
+    socket.on('ballMove', (ballData) => {
+        socket.broadcast.emit('ballMove', ballData);
     });
 });
