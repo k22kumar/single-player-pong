@@ -3,7 +3,7 @@ const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
 // const socket = io('http://localhost:3000');
 // When using express socket io connects to the same socket server at the same host at the same address. It knows what to do without us having to do say explicitly local host 3000
-const socket = io();
+const socket = io('/pong');
 let isReferee = false;
 let paddleIndex = 0;
 
